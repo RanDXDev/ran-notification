@@ -6,7 +6,7 @@
   import { quadInOut } from "svelte/easing";
   import { fade, fly } from "svelte/transition";
 
-  import { type Notification } from "$lib/type";
+  import { type NotifType, type Notification } from "$lib/type";
   import { debugData } from "$utils/debugData";
   async function Clicky() {
     notificationStore.addNotification(
@@ -34,6 +34,11 @@
     );
   }
 
+  function IsValidType(str) {
+    const validTypes: NotifType[] = ["error", "info", "success", "warning"];
+    return validTypes.includes(str as NotifType);
+  }
+
   function CheckData(data: Notification) {
     const newdata = { ...data };
     Object.keys(data).forEach((key) => {
@@ -43,7 +48,7 @@
           if (!val && !data["message"]) newdata["ignore"] = true;
           break;
         case "type":
-          if (!val) newdata[key] = "info";
+          if (!val || !IsValidType(val)) newdata[key] = "info";
           break;
       }
     });
