@@ -66,9 +66,9 @@
     },
   ]);
   useNuiEvent("send-notify", function (data: Notification) {
-    const { type, message, title, timeout } = data;
-    CheckData(data);
-    // notificationStore.addNotification(title, message, type, timeout);
+    const newdata = CheckData(data);
+    const { type, message, title, timeout } = newdata;
+    notificationStore.addNotification(title, message, type, timeout);
   });
 </script>
 

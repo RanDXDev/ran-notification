@@ -11,7 +11,7 @@ local function SendNotification(title, message, type, timeout)
             type = type,
             timeout = timeout
         }
-})
+    })
 end
 
 exports("Notify", SendNotification)
@@ -24,4 +24,5 @@ RegisterCommand("test-notification", function()
     Wait(1000)
     SendNotification("Warning", "This is a warning message", "warning", 5000)
     Wait(1000)
+    SendNotification("Info", "This is an info message", "info", 5000)
 end, false)
