@@ -21,3 +21,7 @@ exports['ran-notification']:SendNotification("Error", "This is an error message"
 
 ## Preview
 ![image](https://github.com/RanDXDev/ran-notification/assets/141992620/71ced212-9c6b-4c3c-a271-9b323d5c21fe)
+
+
+## Support
+You can join my [discord](https://discord.gg/RBkuuZXD) if you want :)
