@@ -54,17 +54,6 @@
     });
     return newdata;
   }
-  debugData([
-    {
-      action: "send-notify",
-      data: {
-        type: "error",
-        title: "Haiya",
-        message: "yeya",
-        timeout: 5000,
-      },
-    },
-  ]);
   useNuiEvent("send-notify", function (data: Notification) {
     const newdata = CheckData(data);
     const { type, message, title, timeout } = newdata;
@@ -109,9 +98,13 @@
               <i class="fa-solid fa-circle-check fa-lg text-success-400" />
             {/if}
           </span>
-          <h1>{title}</h1>
+          {#if title}
+            <h1>{title}</h1>
+          {/if}
         </div>
-        <p class="desc">{message}</p>
+        {#if message}
+          <p class="desc">{message}</p>
+        {/if}
         <div class="h-full absolute right-0 py-2">
           <div
             class:error={type == "error"}
