@@ -10,7 +10,7 @@
   import { debugData } from "$utils/debugData";
   async function Clicky() {
     notificationStore.addNotification(
-      "Success",
+      "Success Title",
       "This is a success message",
       "success"
     );
@@ -39,6 +39,13 @@
     return validTypes.includes(str as NotifType);
   }
 
+  function Trim(str: string) {
+    if (str.length >= 20) {
+      str = str.slice(20, str.length) + "...";
+    }
+    return str;
+  }
+
   function CheckData(data: Notification) {
     const newdata = { ...data };
     Object.keys(data).forEach((key) => {
@@ -46,6 +53,7 @@
       switch (key) {
         case "title":
           if (!val && !data["message"]) newdata["ignore"] = true;
+          console.log(val.length);
           break;
         case "type":
           if (!val || !IsValidType(val)) newdata[key] = "info";
@@ -79,7 +87,7 @@
         class:primary={type == "info"}
         class:warning={type == "warning"}
       >
-        <div class="flex gap-2">
+        <div class="flex gap-2 mb-1 min-h-[28px]">
           <span class="grid place-items-center">
             {#if type == "error"}
               <i
@@ -98,9 +106,9 @@
               <i class="fa-solid fa-circle-check fa-lg text-success-400" />
             {/if}
           </span>
-          {#if title}
-            <h1>{title}</h1>
-          {/if}
+          <h1>
+            {title ? Trim(title) : type.charAt(0).toUpperCase() + type.slice(1)}
+          </h1>
         </div>
         {#if message}
           <p class="desc">{message}</p>
