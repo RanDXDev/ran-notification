@@ -14,9 +14,9 @@ message: string;
 type: "info" | "error" | "warning" | "success", default = info;
 timeout: number;
 ]]
-exports['ran-notification']:SendNotification(title, message, type, timeout)
+exports['ran-notification']:Notify(title, message, type, timeout)
 -- example
-exports['ran-notification']:SendNotification("Error", "This is an error message", "error", 5000)
+exports['ran-notification']:Notify("Error", "This is an error message", "error", 5000)
 ```
 
 ## Preview
